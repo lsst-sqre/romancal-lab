@@ -1,0 +1,8 @@
+{
+ "display_name": "romancal",
+ "language": "python",
+ "argv": [
+    "/opt/romancal/runtime/romancallaunch.bash",
+    "{connection_file}"
+ ]
+}

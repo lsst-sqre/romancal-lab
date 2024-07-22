@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -x
+set -euo pipefail
+src=/usr/local/share/git
+mkdir -p ${src}
+cd ${src}
+
+# The default terminal colors look bad in light mode.
+git clone https://github.com/seebi/dircolors-solarized.git
+cp dircolors-solarized/dircolors* /etc

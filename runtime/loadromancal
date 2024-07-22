@@ -1,0 +1,2 @@
+. /opt/romancal/etc/profile.d/mamba.sh
+. /opt/romancal/bin/activate spx-pipe-base

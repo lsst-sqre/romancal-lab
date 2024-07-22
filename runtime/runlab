@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# This script activates the Jupyterlab virtualenv and then starts the lab.
+
+. /usr/local/share/jupyterlab/venv/bin/activate
+
+# Calculate a few arguments
+
+jh_path="${JUPYTERHUB_BASE_URL}hub"
+jh_host=$( echo "${EXTERNAL_INSTANCE_URL}" | cut -d '/' -f 3 )
+log_lvl="INFO"
+if [ -n "${DEBUG}" ]; then
+    log_lvl="DEBUG"
+fi
+
+# From here on, we will be...
+
+RUNNING_INSIDE_JUPYTERLAB=1
+export RUNNING_INSIDE_JUPYTERLAB
+
+# Now we transfer control to Jupyter Lab (really labhub)
+    
+exec python3 -s -m jupyter labhub --ip=0.0.0.0 --port=8888 --no-browser \
+     --notebook-dir="${HOME}" --hub-prefix="${jh_path}" \
+     --hub-host="${jh_host}" --log-level="${log_lvl}" \
+     --ContentsManager.allow_hidden=True \
+     --FileContentsManager.hide_globs='[]' \
+     --KernelSpecManager.ensure_native_kernel=False \
+     --QtExporter.enabled=False \
+     --PDFExperter.enabled=False \
+     --WebPDFExporter.allow_chromium_download=True \
+     --MappingKernelManager.default_kernel_name=romancal \
+     --LabApp.check_for_updates_class=jupyterlab.NeverCheckForUpdate

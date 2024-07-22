@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -x
+set -euo pipefail
+
+# Create user and home directory.
+stackdir=/opt/romancal
+mkdir -p $stackdir
+groupadd -g 1000 romancal_local
+grpconv
+useradd -u 1000 -g 1000 -d $stackdir -s /bin/bash romancal_local
+pwconv
