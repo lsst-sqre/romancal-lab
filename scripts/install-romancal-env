@@ -20,10 +20,5 @@ export PATH
 MAMBA_NO_BANNER=1
 export MAMBA_NO_BANNER
 
-mamba init
-
 mamba update -y conda
-mamba env create -n romancal python
-mamba activate romancal
-pip install romancal
-
+mamba env create --name romancal --file /tmp/build/romancal-env.yml

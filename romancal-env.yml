@@ -1,0 +1,9 @@
+name: romancal
+channels:
+  - conda-forge
+  - default
+dependencies:
+  - "python=3.12"
+  - pip
+  - pip:
+      - romancal

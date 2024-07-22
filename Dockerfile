@@ -52,13 +52,12 @@ RUN mkdir -p /usr/local/share/jupyterlab /opt/romancal && \
 
 USER romancal_local:romancal_local
 
-# Add the SPHEREx stack.
+# Add the romancal stack.
 
 FROM user-image as base-stack-image
 
-COPY scripts/install-romancal /tmp/build
-COPY romancal-pipelines-base.yml /tmp/build
-RUN ./install-romancal
+COPY romancal-env.yml scripts/install-romancal-env /tmp/build/
+RUN ./install-romancal-env
 
 FROM base-stack-image as jupyterlab-image
 COPY scripts/install-jupyterlab /tmp/build
